@@ -12,8 +12,8 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private var tvSelectedDate: TextView? = null
-    private var tvAgeInHours: TextView? = null
-    private val hoursTime = 3600000
+    private var tvAgeInDays: TextView? = null
+    private val daysTime = 60000 * 60 * 24
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val dateButton: Button = findViewById(R.id.datePickerButton)
         tvSelectedDate = findViewById(R.id.tvSelectedDate)
-        tvAgeInHours = findViewById(R.id.tvAgeInHours)
+        tvAgeInDays = findViewById(R.id.tvAgeInDays)
 
         dateButton.setOnClickListener {
             clickDatePicker()
@@ -54,12 +54,12 @@ class MainActivity : AppCompatActivity() {
 
 
                 actualDate?.let {
-                    val selectedDateInHours = actualDate.time / hoursTime
+                    val selectedDateInDays = actualDate.time / daysTime
 
                     currentDate?.let {
-                        val currentDateInHours = currentDate.time / hoursTime
-                        val ageInHours = currentDateInHours - selectedDateInHours
-                        tvAgeInHours?.text = ageInHours.toString()
+                        val currentDateInDays = currentDate.time / daysTime
+                        val ageInDays = currentDateInDays - selectedDateInDays
+                        tvAgeInDays?.text = ageInDays.toString()
                     }
                 }
             }, year, month, day)
